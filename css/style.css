@@ -1,0 +1,706 @@
+/* ตั้งค่าพื้นฐาน */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fff0f3; /* สีชมพูอ่อนพาสเทล */
+    font-family: 'Mali', cursive;
+    overflow: hidden; /* ป้องกันการเลื่อนหน้าจอเกินจำเป็น */
+    height: auto;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* กันจอเบี้ยว */
+    overflow-y: auto;   /* ให้เลื่อนลงได้เสมอ */
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+}
+
+/* กรอบรูปภาพ */
+.photo-frame {
+    position: relative;
+    background: white;
+    padding: 15px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    max-width: 90%; /* ยืดหยุ่นตามหน้าจอมือถือ */
+    width: 350px;
+}
+
+.main-photo {
+    width: 100%;
+    border-radius: 20px;
+    filter: grayscale(100%); /* ทำรูปขาวดำตาม หน้าแรก.jpg */
+    display: block;
+}
+
+/* ข้อความบนรูป */
+.photo-text-top {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+}
+
+.photo-text-bottom {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    color: white;
+    font-size: 0.9rem;
+}
+
+/* ปุ่ม Click here ! */
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* จัดกลางในแนวนอน */
+    justify-content: center; /* จัดกลางในแนวตั้ง */
+    width: 100%;
+}
+
+.click-btn {
+    margin-top: 40px; /* ระยะห่างระหว่างรูปกับปุ่ม */
+    display: inline-block;
+    padding: 15px 50px; /* ปรับขนาดปุ่มให้ดูนุ่มนวลขึ้น */
+    background-color: #ffc2d1;
+    color: #fb6f92;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 194, 209, 0.5);
+    
+    /* บรรทัดนี้จะช่วยให้มั่นใจว่าตัวหนังสือในปุ่มอยู่กึ่งกลาง */
+    text-align: center;
+    min-width: 200px;
+}
+
+.click-btn:hover {
+    transform: translateY(-3px); /* ให้ปุ่มลอยขึ้นเล็กน้อยตอนเอาเมาส์วาง */
+    box-shadow: 0 8px 20px rgba(255, 194, 209, 0.7);
+}
+
+/* Responsive สำหรับหน้าจอคอมพิวเตอร์ */
+@media (min-width: 768px) {
+    .photo-frame {
+        width: 400px; /* ปรับให้ใหญ่ขึ้นเล็กน้อยเมื่อเปิดในคอม */
+    }
+}
+
+/* หน้า Login */
+/* แก้ไขส่วนหน้า Login ใน style.css */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* จัดให้อยู่กลางจอแนวตั้ง */
+    padding: 20px;
+    background: #fff0f3; /* พื้นหลังชมพูอ่อนทั้งหน้า */
+    min-height: 100vh;
+    width: 100%;
+}
+
+.lock-photo-frame {
+    width: 280px; /* ปรับขนาดกรอบรูปให้พอดี */
+    height: 350px;
+    background: white;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+}
+
+.lock-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.login-title {
+    font-family: 'Dancing Script', cursive;
+    color: #555;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.hint-text {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.pass-display {
+    background: white; /* เปลี่ยนเป็นสีขาวให้เด่นขึ้น */
+    width: 250px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    font-size: 1.4rem;
+    color: #fb6f92;
+    margin-bottom: 25px;
+    letter-spacing: 8px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
+}
+
+/* แป้นพิมพ์ตัวเลข */
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 280px;
+}
+
+.keypad button {
+    height: 55px;
+    border: none;
+    border-radius: 18px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    color: #555;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+/* สีปุ่มสลับสีตามเรฟเฟอเรนซ์ */
+.keypad button:nth-child(2), 
+.keypad button:nth-child(4), 
+.keypad button:nth-child(6), 
+.keypad button:nth-child(8),
+.keypad button:nth-child(10) { 
+    background: #e0f2fe; /* สีฟ้าพาสเทล */
+}
+
+/* ปุ่มพิเศษ */
+.btn-clear { background: #f1f5f9 !important; color: #94a3b8 !important; }
+.btn-enter { background: #ffc2d1 !important; color: white !important; }
+
+.keypad button:active {
+    transform: scale(0.92);
+}
+
+/* การจัดวางเมนู */
+.menu-container {
+    display: flex;
+    flex-direction: column; /* มือถือจะเรียงลงมาตาม "หน้าเลือก.jpg" */
+    align-items: center;
+    gap: 20px;
+    padding: 40px 20px;
+    background: #fff0f3;
+    min-height: 100vh;
+}
+
+.menu-card {
+    width: 100%;
+    max-width: 320px;
+    background: white;
+    border-radius: 20px;
+    text-decoration: none;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.menu-card:hover { transform: translateY(-5px); }
+
+.card-header {
+    text-align: center;
+    padding: 8px;
+    font-size: 0.8rem;
+    background-color: rgba(255,255,255,0.5);
+}
+
+.card-body {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* ลายทางพาสเทลตามเรฟเฟอเรนซ์ */
+    background-image: linear-gradient(90deg, rgba(255,255,255,0.7) 50%, transparent 50%);
+    background-size: 40px 100%;
+}
+
+/* สีของการ์ดแต่ละใบ */
+.card-blue .card-body { background-color: #e0f2fe; }
+.card-green .card-body { background-color: #dcfce7; }
+.card-purple .card-body { background-color: #f3e8ff; }
+
+.card-icon { width: 60px; margin-bottom: 15px; }
+.card-title { font-family: 'Dancing Script', cursive; font-size: 2rem; color: #333; }
+.card-subtitle { color: #fb6f92; font-size: 1rem; }
+
+/* เมื่อเปิดในคอมพิวเตอร์ ให้เรียงกัน 3 ใบแนวนอน */
+@media (min-width: 768px) {
+    .menu-container {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+/* หน้า Counter */
+.counter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.counter-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.title-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #444;
+}
+
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* ในมือถือเรียง 2x2 */
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.time-box {
+    background: #fff0f3;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.time-num {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fb6f92;
+}
+
+.time-label {
+    font-size: 0.8rem;
+    color: #999;
+    letter-spacing: 1px;
+}
+
+.counting-footer {
+    margin-top: 30px;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.back-link {
+    margin-top: 40px;
+    color: #fb6f92;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* เมื่อเปิดในคอม ให้เรียงแถวเดียวแนวนอนยาวๆ */
+@media (min-width: 768px) {
+    .time-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 700px;
+    }
+}
+
+/* หน้า Photo Gallery */
+/* --- Gallery Page Styles --- */
+
+.gallery-page {
+    background-color: #fffafa;
+    min-height: 100vh;
+    height: auto;       /* ปล่อยให้ความสูงขยายตามจำนวนรูป */
+    overflow-y: auto;   /* ให้เลื่อนขึ้น-ลงได้ */
+    overflow-x: hidden; /* กันหน้าจอเบี้ยวซ้ายขวา */
+    padding-bottom: 50px;
+    font-family: 'Mali', cursive;
+}
+
+.nav-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    position: sticky; /* ให้แถบหัวข้อติดอยู่ด้านบนตอนเลื่อน */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.back-btn {
+    text-decoration: none;
+    color: #fb6f92;
+    font-weight: 600;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    color: #fb6f92;
+    margin: 0;
+}
+
+.memory-container {
+    padding: 20px 0;
+}
+
+.memory-set {
+    margin-bottom: 35px;
+}
+
+.memory-caption {
+    padding: 0 20px;
+    margin-bottom: 15px;
+    color: #555;
+    font-weight: 600;
+    border-left: 5px solid #ffc2d1;
+    margin-left: 10px;
+}
+
+/* ส่วนที่เลื่อนซ้าย-ขวา */
+.horizontal-scroll {
+    display: flex;
+    overflow-x: auto; /* เลื่อนแนวนอน */
+    gap: 12px;
+    padding: 10px 20px;
+    scroll-snap-type: x mandatory; /* ให้รูปเด้งเข้าล็อคตอนเลื่อน */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ซ่อนแถบ scrollbar แต่ยังเลื่อนได้ */
+.horizontal-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.image-card {
+    flex: 0 0 280px; /* ความกว้างของแต่ละรูปในมือถือ */
+    scroll-snap-align: start;
+}
+
+.image-card img {
+    width: 100%;
+    height: 400px; /* ความสูงของรูปภาพ */
+    object-fit: cover; /* กันรูปเบี้ยว */
+    border-radius: 25px; /* ขอบมนสวยๆ */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    background-color: #eee; /* สีพื้นหลังถ้ารูปยังไม่โหลด */
+}
+
+.no-data {
+    text-align: center;
+    margin-top: 100px;
+    color: #fb6f92;
+}
+/* ใส่ใน style.css */
+.image-card img[src=""], 
+.image-card img:not([src]) {
+    display: none;
+}
+
+/* ถ้าหารูปไม่เจอให้ซ่อนการ์ดนั้นไปเลย */
+.image-card:has(img[onerror]) {
+    display: none;
+}
+
+.image-card {
+    flex: 0 0 280px; /* กำหนดขนาดความกว้างของแต่ละรูป */
+    scroll-snap-align: start;
+}
+
+.image-card img {
+    width: 100%;
+    height: 380px; /* ปรับความสูงตามความชอบ */
+    object-fit: cover; /* ให้รูปไม่เบี้ยว */
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+}
+
+/* --- Music Page Stylesheet --- */
+.music-page {
+    background: linear-gradient(180deg, #fff0f3 0%, #ffffff 100%);
+    min-height: 100vh; /* ให้ความสูงขั้นต่ำเท่ากับหน้าจอ */
+    height: auto;       /* ปล่อยให้ความสูงขยายตามเนื้อหา */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 15px;
+    font-family: 'Mali', cursive;
+    color: #444;
+    
+    /* เพิ่มบรรทัดนี้เพื่อให้มั่นใจว่าเลื่อนหน้าจอได้ */
+    overflow-y: auto; 
+    overflow-x: hidden; /* ป้องกันการเลื่อนซ้ายขวาที่อาจทำให้หน้าจอเบี้ยว */
+}
+
+/* ส่วนหัวย้อนกลับ */
+.back-to-menu {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #fb6f92;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.back-to-menu:hover {
+    letter-spacing: 1px;
+}
+
+/* การ์ดเครื่องเล่นเพลงหลัก */
+.music-card-wrapper {
+    background: white;
+    width: 100%;
+    max-width: 350px;
+    border-radius: 40px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(251, 111, 146, 0.15);
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 194, 209, 0.3);
+}
+
+/* รูปหน้าปก */
+.music-cover {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* ข้อมูลเพลงบนรูป */
+.song-details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.6));
+    color: white;
+}
+
+#mainTitle {
+    font-size: 1.4rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+.dedication {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.1rem;
+    margin-top: 5px;
+    opacity: 0.9;
+}
+
+/* ตัวควบคุมเพลง */
+.player-controls {
+    padding: 10px 5px;
+}
+
+/* แถบ Progress */
+.progress-area {
+    height: 6px;
+    width: 100%;
+    background: #f0f0f0;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.progress-bar-inner {
+    height: 100%;
+    width: 0%; /* เริ่มต้นที่ 0 */
+    background: linear-gradient(90deg, #ffc2d1, #fb6f92);
+    border-radius: 10px;
+    transition: width 0.1s linear;
+}
+
+/* ปุ่ม Play/Pause */
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-pause {
+    width: 70px;
+    height: 70px;
+    background: #ffc2d1;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255, 194, 209, 0.6);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5px; /* ชดเชยให้ไอคอน Play ดูอยู่ตรงกลาง */
+}
+
+.play-pause:active {
+    transform: scale(0.9);
+}
+
+/* ส่วนเนื้อเพลง */
+.lyrics-box {
+    width: 100%;
+    max-width: 350px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 30px;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 30px;
+    backdrop-filter: blur(5px);
+    border: 1px dashed #ffc2d1;
+}
+
+.lyrics-content {
+    font-size: 0.95rem;
+    line-height: 2;
+    color: #666;
+    font-style: italic;
+}
+
+/* ส่วนรายการเพลง Playlist */
+.playlist-container {
+    width: 100%;
+    max-width: 350px;
+}
+
+.playlist-title {
+    font-size: 1.1rem;
+    color: #fb6f92;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.playlist-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.playlist-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.playlist-item:hover {
+    background: #fff8f9;
+    border-color: #ffc2d1;
+    transform: translateX(8px);
+}
+
+.mini-cover {
+    width: 55px;
+    height: 55px;
+    border-radius: 15px;
+    object-fit: cover;
+    margin-right: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.mini-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.mini-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #444;
+    margin: 0;
+}
+
+.mini-artist {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-top: 3px;
+}
+
+/* ปรับแต่ง Scrollbar สำหรับ Playlist */
+.playlist-items::-webkit-scrollbar {
+    width: 5px;
+}
+
+.playlist-items::-webkit-scrollbar-thumb {
+    background: #ffc2d1;
+    border-radius: 10px;
+}
+
+/* Animation เล็กๆ */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.playing .cover-img {
+    animation: pulse 5s infinite ease-in-out;
+}
+.exit-wrapper {
+    bottom: 80px;      /* เพิ่มจาก 30px เป็น 80px (หรือปรับตามใจชอบ) */
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    z-index: 999;
+    /* ถ้าอยากให้ดูนุ่มนวลขึ้นตอนโผล่มา */
+    pointer-events: none; /* กันไม่ให้ตัว wrapper บังส่วนอื่น */
+    
+}
+.exit-wrapper .click-btn {
+    pointer-events: auto; /* ให้ตัวปุ่มกดได้ปกติ */
+}
+.menu-container2 {
+    padding-bottom: 100px; /* เว้นที่ว่างด้านล่างไว้ให้ปุ่มที่ลอยอยู่ */
+}
